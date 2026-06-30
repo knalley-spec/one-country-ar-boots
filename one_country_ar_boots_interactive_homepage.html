@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>One Country AR Boots</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d0d0f;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+    }
+    .phone {
+      width: 390px;
+      min-height: 820px;
+      background: linear-gradient(180deg, #111 0%, #050505 100%);
+      border-radius: 34px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,.45);
+      border: 1px solid #2c2c2c;
+      position: relative;
+    }
+    header {
+      padding: 26px 24px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand { letter-spacing: 6px; font-size: 19px; font-weight: 600; }
+    .sub { color: #d6a37e; letter-spacing: 4px; font-size: 12px; margin-top: 5px; }
+    .menu { font-size: 30px; color: #d6a37e; cursor: pointer; }
+    .hero {
+      padding: 34px 24px;
+      min-height: 330px;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.9), rgba(0,0,0,.4)),
+        radial-gradient(circle at 80% 40%, #8b5e3c 0%, transparent 35%);
+      border-top: 1px solid #292929;
+      border-bottom: 1px solid #292929;
+    }
+    h1 {
+      margin: 0;
+      font-size: 42px;
+      line-height: 1.05;
+      letter-spacing: 3px;
+    }
+    .hero p {
+      font-size: 18px;
+      line-height: 1.45;
+      color: #eee;
+      max-width: 300px;
+    }
+    .scan-btn {
+      margin-top: 18px;
+      border: 0;
+      padding: 18px 38px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #f4c29e, #c7835b);
+      font-size: 20px;
+      letter-spacing: 2px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    section { padding: 24px; }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      letter-spacing: 3px;
+      font-weight: 700;
+    }
+    .view-all { color: #d6a37e; font-size: 13px; cursor: pointer; }
+    .style-grid {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .card {
+      background: #171717;
+      border: 1px solid #2c2c2c;
+      border-radius: 18px;
+      padding: 16px;
+      cursor: pointer;
+      transition: .2s;
+    }
+    .card:hover, .card.active {
+      transform: translateY(-3px);
+      border-color: #d6a37e;
+      box-shadow: 0 0 0 2px rgba(214,163,126,.15);
+    }
+    .boot-emoji { font-size: 44px; margin-bottom: 12px; }
+    .card-title { letter-spacing: 2px; font-weight: 700; }
+    .result {
+      margin: 0 24px 90px;
+      padding: 18px;
+      background: rgba(214,163,126,.12);
+      border: 1px solid rgba(214,163,126,.5);
+      border-radius: 20px;
+      display: none;
+      line-height: 1.5;
+    }
+    .bottom-nav {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(10,10,10,.96);
+      border-top: 1px solid #2c2c2c;
+      display: flex;
+      justify-content: space-around;
+      padding: 14px 0 18px;
+    }
+    .nav-item {
+      color: #aaa;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .nav-item.active { color: #d6a37e; }
+    .modal {
+      display: none;
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.9);
+      z-index: 10;
+      padding: 80px 28px;
+      text-align: center;
+    }
+    .scanner {
+      border: 3px solid #d6a37e;
+      border-radius: 28px;
+      height: 320px;
+      margin: 32px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #d6a37e;
+      font-size: 22px;
+      letter-spacing: 2px;
+    }
+    .close {
+      background: transparent;
+      border: 1px solid #d6a37e;
+      color: #d6a37e;
+      border-radius: 14px;
+      padding: 12px 24px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <main class="phone">
+    <header>
+      <div>
+        <div class="brand">ONE COUNTRY</div>
+        <div class="sub">AR BOOTS</div>
+      </div>
+      <div class="menu" onclick="alert('Menu: Home, Scan, Favorites, Profile')">☰</div>
+    </header>
+
+    <div class="hero">
+      <h1>SCAN.<br>YOUR FOOT</h1>
+      <p>Scan your foot to identify the brand, style, shape and size that would be your best fit.</p>
+      <button class="scan-btn" onclick="openScanner()">▣ SCAN</button>
+    </div>
+
+    <section>
+      <div class="section-head">
+        <div>EXPLORE STYLES</div>
+        <div class="view-all" onclick="showAll()">VIEW ALL →</div>
+      </div>
+
+      <div class="style-grid">
+        <div class="card" onclick="selectStyle(this, 'Classic boots: timeless shape, clean stitching, everyday fit.')">
+          <div class="boot-emoji">👢</div>
+          <div class="card-title">CLASSIC</div>
+        </div>
+        <div class="card" onclick="selectStyle(this, 'Western boots: taller shaft, pointed toe, traditional details.')">
+          <div class="boot-emoji">🤠</div>
+          <div class="card-title">WESTERN</div>
+        </div>
+        <div class="card" onclick="selectStyle(this, 'Roper boots: shorter heel, rounder toe, comfortable casual fit.')">
+          <div class="boot-emoji">👞</div>
+          <div class="card-title">ROPER</div>
+        </div>
+        <div class="card" onclick="selectStyle(this, 'Fashion boots: trend-forward shapes, colors, and statement details.')">
+          <div class="boot-emoji">✨</div>
+          <div class="card-title">FASHION</div>
+        </div>
+      </div>
+    </section>
+
+    <div id="result" class="result"></div>
+
+    <nav class="bottom-nav">
+      <div class="nav-item active">⌂<br>HOME</div>
+      <div class="nav-item" onclick="openScanner()">▣<br>SCAN</div>
+      <div class="nav-item" onclick="alert('Favorites coming soon')">♡<br>FAVORITES</div>
+      <div class="nav-item" onclick="alert('Profile coming soon')">○<br>PROFILE</div>
+    </nav>
+
+    <div id="modal" class="modal">
+      <h2>AR FOOT SCAN</h2>
+      <p>Point your camera at your foot to begin scanning.</p>
+      <div class="scanner">CAMERA PREVIEW</div>
+      <button class="close" onclick="closeScanner()">Close Scanner</button>
+    </div>
+  </main>
+
+  <script>
+    function openScanner() {
+      document.getElementById('modal').style.display = 'block';
+    }
+    function closeScanner() {
+      document.getElementById('modal').style.display = 'none';
+    }
+    function selectStyle(card, text) {
+      document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      const result = document.getElementById('result');
+      result.innerHTML = '<strong>Selected Style</strong><br>' + text;
+      result.style.display = 'block';
+    }
+    function showAll() {
+      alert('Showing all boot styles: Classic, Western, Roper, Fashion, Exotic, Work, Riding.');
+    }
+  </script>
+</body>
+</html>
